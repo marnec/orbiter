@@ -1,7 +1,7 @@
 import { Sphere } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
-import { Group, Mesh, Vector3 } from "three";
+import { Mesh, Vector3 } from "three";
 import { OrbitLine } from "./OrbitLine";
 
 export type PlanetProps = {
