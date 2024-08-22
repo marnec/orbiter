@@ -1,12 +1,18 @@
-import { Vector3 } from "@react-three/fiber"
+import { Planet, PlanetProps } from "./Planet";
+import { Star, StarProps } from "./Star";
 
 type SystemProps = {
-    center: Vector3
-    bodies: Vector3[]
-}
+  center: StarProps;
+  bodies: PlanetProps[];
+};
 
-export default function System({center, bodies}: SystemProps) {
-
-    
-    
+export function System({ center, bodies }: SystemProps) {
+  return (
+    <group>
+      <Star {...center} />
+      {bodies.map((body, index) => (
+        <Planet key={index} {...body} />
+      ))}
+    </group>
+  );
 }
