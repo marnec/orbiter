@@ -1,3 +1,4 @@
+import React from 'react';
 import { Line } from "@react-three/drei";
 import { useMemo } from "react";
 import { Vector3 } from "three";

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Planet, PlanetProps } from "./Planet";
 import { Star, StarProps } from "./Star";
 
