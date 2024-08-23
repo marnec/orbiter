@@ -24,3 +24,4 @@ dist/
 build/
 public/
 *.log
+packages/example/public
