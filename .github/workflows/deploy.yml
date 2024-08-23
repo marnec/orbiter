@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm ci
-          npx lerna bootstrap
+          npx lerna init
       
       - name: Build library
         run: npx lerna run build --scope=react-lib
