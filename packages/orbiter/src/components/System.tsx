@@ -1,18 +1,27 @@
-import React from 'react';
-import { Planet, PlanetProps } from "./Planet";
-import { Star, StarProps } from "./Star";
+import { CenterProps } from "@react-three/drei";
+import React, { ReactElement } from "react";
+import { Vector3 } from "three";
+import { CenterBody } from "./CenterBody";
+import { OrbitingBody, OrbitingBodyProps } from "./OrbitingBody";
 
 type SystemProps = {
-  center: StarProps;
-  bodies: PlanetProps[];
+  position: Vector3;
+  centerBody: ReactElement<
+    CenterProps,
+    React.JSXElementConstructor<typeof CenterBody>
+  >;
+  orbitingBodies: ReactElement<
+    OrbitingBodyProps,
+    React.JSXElementConstructor<typeof OrbitingBody>
+  >[];
 };
 
-export function System({ center, bodies }: SystemProps) {
+export function System({ centerBody, orbitingBodies, position }: SystemProps) {
   return (
-    <group>
-      <Star {...center} />
-      {bodies.map((body, index) => (
-        <Planet key={index} {...body} />
+    <group position={position}>
+      {centerBody}
+      {orbitingBodies.map((body, index) => (
+        <group key={index}>{body}</group>
       ))}
     </group>
   );

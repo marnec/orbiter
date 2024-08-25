@@ -1,4 +1,6 @@
 export { System } from "./components/System";
-export { Star } from "./components/Star";
+export { Star, starDefaults } from "./components/Star";
 export { Planet } from "./components/Planet";
 export { OrbitLine } from "./components/OrbitLine";
+export { OrbitingBody } from "./components/OrbitingBody";
+export { CenterBody } from "./components/CenterBody";

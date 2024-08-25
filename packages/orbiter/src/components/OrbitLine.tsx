@@ -1,29 +1,29 @@
-import React from 'react';
+import React from "react";
 import { Line } from "@react-three/drei";
 import { useMemo } from "react";
 import { Vector3 } from "three";
 
 export type OrbitLineProps = {
   radius: number;
-  center: Vector3;
-  color: string;
+  color?: string;
+  vertices?: number
 };
 
-export function OrbitLine({ radius, center, color = "white" }: OrbitLineProps) {
+export function OrbitLine({ radius, color='white', vertices=64 }: OrbitLineProps) {
   const points = useMemo(() => {
     const pts = [];
-    for (let i = 0; i <= 64; i++) {
-      const angle = (i / 64) * 2 * Math.PI;
+    for (let i = 0; i <= vertices; i++) {
+      const angle = (i / vertices) * 2 * Math.PI;
       pts.push(
-        new Vector3(
-          center.x + Math.cos(angle) * radius,
-          center.y,
-          center.z + Math.sin(angle) * radius
-        )
+        new Vector3(Math.cos(angle) * radius, 0, Math.sin(angle) * radius)
       );
     }
     return pts;
-  }, [radius, center]);
+  }, [radius]);
 
-  return <Line points={points} color={color} lineWidth={0.5} />;
+  return (
+    <Line points={points} lineWidth={0.5} color={color}>
+      <lineBasicMaterial></lineBasicMaterial>
+    </Line>
+  );
 }
