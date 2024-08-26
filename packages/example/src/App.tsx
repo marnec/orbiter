@@ -1,24 +1,25 @@
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import { useControls } from "leva";
 import {
   CenterBody,
   OrbitingBody,
   Planet,
+  planetTypes,
   Star,
-  starDefaults,
   System,
 } from "obiter";
-import Skybox from "./Skybox";
-import "./App.css";
+import { StarType, starTypes } from "obiter/dist/components/Star";
 import { Vector3 } from "three";
-import { useControls } from "leva";
-import { StarType } from "obiter/dist/components/Star";
+import "./App.css";
+import Skybox from "./Skybox";
+import { planetDefaults, PlanetType } from "obiter/dist/components/Planet";
 
 function App() {
   let { starType } = useControls("Star", {
     starType: {
       value: "mainSequence",
-      options: Object.keys(starDefaults),
+      options: starTypes,
       label: "Star type",
     },
     wobbleSpeed: {
@@ -36,18 +37,21 @@ function App() {
   });
 
   let planetControls = [];
-  for (let i = 1; i < 3; i++) {
+  for (let i = 0; i < planetTypes.length; i++) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    let planetCtrl = useControls(`Planets.Planet ${i}`, {
+    let planetCtrl = useControls(`Planets.${planetTypes[i]}`, {
       orbitRadius: {
-        value: i * 2,
+        value: (i + 1) * 2 + planetDefaults[planetTypes[i]].size / 2,
         min: 1,
         max: 10,
         label: "Orbit radius",
       },
-      orbitSpeed: { value: 2 / i, min: 0.1, max: 10, label: "Orbit speed" },
-      size: { value: i * 0.1, min: 0.1, max: 3, label: "Planet size" },
-      color: "#bd7901"
+      orbitSpeed: {
+        value: 1 / (i + 1),
+        min: 0.1,
+        max: 10,
+        label: "Orbit speed",
+      },
     });
 
     planetControls.push(planetCtrl);
@@ -66,12 +70,12 @@ function App() {
             <Star type={starType as StarType} />
           </CenterBody>
         }
-        orbitingBodies={planetControls.map((planet) => (
+        orbitingBodies={planetControls.map((planet, i) => (
           <OrbitingBody
             orbitRadius={planet.orbitRadius}
             orbitSpeed={planet.orbitSpeed}
           >
-            <Planet size={planet.size} color={planet.color} />
+            <Planet type={planetTypes[i]} />
           </OrbitingBody>
         ))}
       />
