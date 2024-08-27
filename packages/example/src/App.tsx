@@ -9,11 +9,11 @@ import {
   Star,
   System,
 } from "obiter";
+import { planetDefaults } from "obiter/dist/components/Planet";
 import { StarType, starTypes } from "obiter/dist/components/Star";
 import { Vector3 } from "three";
 import "./App.css";
 import Skybox from "./Skybox";
-import { planetDefaults, PlanetType } from "obiter/dist/components/Planet";
 
 function App() {
   let { starType } = useControls("Star", {
@@ -49,7 +49,7 @@ function App() {
       orbitSpeed: {
         value: 1 / (i + 1),
         min: 0.1,
-        max: 10,
+        max: 1,
         label: "Orbit speed",
       },
     });
