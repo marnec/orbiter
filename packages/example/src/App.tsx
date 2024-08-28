@@ -14,6 +14,7 @@ import { StarType, starTypes } from "obiter/dist/components/Star";
 import { Vector3 } from "three";
 import "./App.css";
 import Skybox from "./Skybox";
+import { Starfield } from "./Starfield";
 
 function App() {
   let { starType } = useControls("Star", {
@@ -58,10 +59,10 @@ function App() {
   }
 
   return (
-    <Canvas camera={{ position: [0, 5, 10] }}>
+    <Canvas camera={{ position: [0, 5, 10] }} style={{ background: "black" }}>
       <OrbitControls />
       <ambientLight intensity={Math.PI / 2} />
-      <Skybox />
+      <Starfield />
 
       <System
         position={new Vector3(0, 0, 0)}
@@ -75,7 +76,19 @@ function App() {
             orbitRadius={planet.orbitRadius}
             orbitSpeed={planet.orbitSpeed}
           >
-            <Planet type={planetTypes[i]} />
+            <System
+              position={new Vector3(0, 0, 0)}
+              centerBody={
+                <CenterBody>
+                  <Planet type={planetTypes[i]} />
+                </CenterBody>
+              }
+              orbitingBodies={
+                [<OrbitingBody orbitRadius={planetDefaults[planetTypes[i]].size + 0.5} orbitSpeed={2} >
+                  <Planet type='dwarf'></Planet>
+                </OrbitingBody>]
+              }
+            ></System>
           </OrbitingBody>
         ))}
       />
