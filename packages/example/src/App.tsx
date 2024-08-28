@@ -13,7 +13,6 @@ import { planetDefaults } from "obiter/dist/components/Planet";
 import { StarType, starTypes } from "obiter/dist/components/Star";
 import { Vector3 } from "three";
 import "./App.css";
-import Skybox from "./Skybox";
 import { Starfield } from "./Starfield";
 
 function App() {
