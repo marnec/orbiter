@@ -26,7 +26,7 @@ jobs:
         run: npx lerna run build --stream --scope=orbiter
 
       - name: Generate changelog
-        run: export GITHUB_AUT=${{ secrets.GH_AUTH }}; npx lerna-changelog > CHANGELOG.md
+        run: export GITHUB_AUTH=${{ secrets.GH_AUTH }}; npx lerna-changelog > CHANGELOG.md
 
       - name: Publish to npm
         run: npx lerna publish --no-private from-git --yes
