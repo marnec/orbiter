@@ -23,13 +23,13 @@ jobs:
         run: npm ci
 
       - name: Build packages
-        run: npx lerna run build
+        run: npx lerna run build --stream --scope=orbiter
 
       - name: Generate changelog
         run: npx lerna-changelog > CHANGELOG.md
 
       - name: Publish to npm
-        run: npx lerna publish from-git --yes
+        run: npx lerna publish --no-private from-git --yes
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
