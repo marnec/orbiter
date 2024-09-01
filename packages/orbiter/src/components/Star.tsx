@@ -41,10 +41,6 @@ export const Star = ({
   let starLight = useRef<PointLight>(null!);
   let bloom = useRef<SelectiveBloomEffect>(null!);
 
-  // useFrame(({ clock }) => {
-  //   let t = clock.getElapsedTime();
-  // });
-
   const defaults = starDefaults[type];
 
   return (
