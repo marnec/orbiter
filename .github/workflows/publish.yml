@@ -21,7 +21,7 @@ jobs:
         run: npm ci
 
       - name: update tags
-        run: git fetch --tags
+        run: git fetch --tags --force
 
       - name: Build packages
         run: npx lerna run build --stream --scope=orbiter
