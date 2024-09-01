@@ -2,10 +2,11 @@ name: Publish to npm
 
 on:
   release:
-    # types: [published, created]
+    types: [published, created]
 
 jobs:
   publish-npm:
+    environment: npm
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,7 +21,7 @@ jobs:
         run: npm ci
 
       - name: Build packages
-        run: npx lerna run build
+        run: npx lerna run build --stream --scope=orbiter
 
       - name: Publish to npm
         run: npx lerna publish --no-private from-git --yes
