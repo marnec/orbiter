@@ -9,6 +9,7 @@ permissions:
 
 jobs:
   release:
+    environment: npm
     name: Release
     runs-on: ubuntu-latest
     permissions:
