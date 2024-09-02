@@ -1,6 +1,5 @@
 {
   "name": "orbiter-meta",
-  "private": true,
   "workspaces": [
     "packages/*"
   ],
