@@ -14,7 +14,8 @@
   },
   "devDependencies": {
     "typescript": "^4.9.5",
-    "semantic-release": "24.1.0"
+    "semantic-release": "24.1.0",
+    "zx-bulk-release": "2.15.22"
   },
   "changelog": {
     "repo": "marnec/orbiter",
