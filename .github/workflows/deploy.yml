@@ -17,15 +17,13 @@ jobs:
           node-version: '20'
       
       - name: Install dependencies
-        run: |
-          npm ci
-          npx lerna init
+        run: npm ci
       
       - name: Build library
-        run: npx lerna run build --scope=orbiter
+        run: npm run build:lib
       
       - name: Build example
-        run: npx lerna run build --scope=example
+        run: npm run build:example
       
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

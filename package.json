@@ -5,17 +5,17 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "lerna run start --stream --scope=example",
-    "build:lib": "lerna run build --stream --scope=orbiter",
-    "watch:lib": "lerna run watch --stream --scope=orbiter",
-    "build:example": "lerna run build --stream --scope=example",
-    "test": "lerna run test --stream",
-    "lint": "lerna run lint --stream"
+"start": "npm run start --workspace=example",
+    "build:lib": "npm run build --workspace=orbiter",
+    "watch:lib": "npm run watch --workspace=orbiter",
+    "build:example": "npm run build --workspace=example",
+    "test": "npm run test --workspaces",
+    "lint": "npm run lint --workspaces",
+    "publish:lib": "npm publish --workspace=orbiter"
   },
   "devDependencies": {
-    "lerna": "8.1.8",
-    "lerna-changelog": "^2.2.0",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "semantic-release": "24.1.0"
   },
   "changelog": {
     "repo": "marnec/orbiter",
@@ -25,5 +25,13 @@
       "bug": ":bug: Bug Fix",
       "documentation": ":memo: Documentation"
     }
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/github"
+    ]
   }
 }

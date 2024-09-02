@@ -1,54 +1,36 @@
-name: Create Release
-
+name: Release
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - main # or main
+
+permissions:
+  contents: read # for checkout
 
 jobs:
-  build-and-publish:
-    environment: npm
+  release:
+    name: Release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+      pull-requests: write # to be able to comment on released pull requests
+      id-token: write # to enable use of OIDC for npm provenance
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
-          node-version: '18'
-          registry-url: 'https://registry.npmjs.org'
-
+          node-version: "lts/*"
       - name: Install dependencies
-        run: npm ci
-
-      - name: Build packages
-        run: npx lerna run build --stream --scope=orbiter
-
-      - name: Generate changelog
-        run: npx lerna-changelog > CHANGELOG.md
+        run: npm clean-install
+      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
+        run: npm audit signatures
+      - name: Release
         env:
-          GITHUB_AUTH: ${{ secrets.GH_AUTH }}
-
-      - name: Create GitHub Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_AUTH }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body_path: CHANGELOG.md
-          draft: false
-          prerelease: false
-
-      - name: Upload orbiter package artifact
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_AUTH }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./packages/orbiter/dist/index.js
-          asset_name: orbiter.js
-          asset_content_type: application/javascript
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release
