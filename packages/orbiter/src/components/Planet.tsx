@@ -47,7 +47,7 @@ export type PlanetType = (typeof planetTypes)[number];
 export const planetDefaults = {
   terrestrial: {
     size: 0.08 * 5,
-    color: "#a0522d", // Earthy brown (hex code)
+    color: "#a0522d",
     roughness: 0.8,
     metalness: 0.1,
     emissiveColor: "#000000", // No glow
