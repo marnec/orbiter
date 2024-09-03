@@ -50,7 +50,7 @@ export const planetDefaults = {
     color: "#a0522d",
     roughness: 0.8,
     metalness: 0.1,
-    emissiveColor: "#000000", // No glow
+    emissiveColor: "#000000",
     emissiveIntensity: 0,
   },
   gasGiant: {
