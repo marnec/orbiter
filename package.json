@@ -1,5 +1,6 @@
 {
   "name": "orbiter-meta",
+  "private": true,
   "workspaces": [
     "packages/*"
   ],
@@ -15,7 +16,8 @@
   "devDependencies": {
     "typescript": "^4.9.5",
     "semantic-release": "24.1.0",
-    "zx-bulk-release": "2.15.22"
+    "multi-semantic-release": "3.0.2",
+    "semantic-release-monorepo-esm": "1.0.12"
   },
   "changelog": {
     "repo": "marnec/orbiter",
@@ -27,6 +29,10 @@
     }
   },
   "release": {
+    "branches": [
+      "main"
+    ],
+    "extends": "semantic-release-monorepo-esm",
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
