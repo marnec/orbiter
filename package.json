@@ -2,10 +2,10 @@
   "name": "orbiter-meta",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/orbiter"
   ],
   "scripts": {
-"start": "npm run start --workspace=example",
+    "start": "npm run start --workspace=example",
     "build:lib": "npm run build --workspace=orbiter",
     "watch:lib": "npm run watch --workspace=orbiter",
     "build:example": "npm run build --workspace=example",
@@ -19,25 +19,13 @@
     "multi-semantic-release": "3.0.2",
     "semantic-release-monorepo-esm": "1.0.12"
   },
-  "changelog": {
-    "repo": "marnec/orbiter",
-    "labels": {
-      "breaking": ":boom: Breaking Change",
-      "enhancement": ":rocket: Enhancement",
-      "bug": ":bug: Bug Fix",
-      "documentation": ":memo: Documentation"
-    }
-  },
   "release": {
     "branches": [
       "main"
     ],
-    "extends": "semantic-release-monorepo-esm",
     "plugins": [
       "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/npm",
-      "@semantic-release/github"
+      "@semantic-release/release-notes-generator"
     ]
   }
 }

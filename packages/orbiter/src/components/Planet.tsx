@@ -55,7 +55,7 @@ export const planetDefaults = {
   },
   gasGiant: {
     size: 0.12 * 5,
-    color: "#ffcc66", // Pale orange with banding (hex code)
+    color: "#ffcc66",
     roughness: 0.6,
     metalness: 0.2,
     emissiveColor: "#000000",
