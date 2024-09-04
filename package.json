@@ -10,14 +10,12 @@
     "watch:lib": "npm run watch --workspace=orbitr",
     "build:example": "npm run build --workspace=example",
     "test": "npm run test --workspaces",
-    "lint": "npm run lint --workspaces",
-    "publish:lib": "npm publish --workspace=orbitr"
+    "lint": "npm run lint --workspaces"
   },
   "devDependencies": {
     "typescript": "^4.9.5",
     "semantic-release": "24.1.0",
-    "multi-semantic-release": "3.0.2",
-    "semantic-release-monorepo-esm": "1.0.12"
+    "multi-semantic-release": "3.0.2"
   },
   "release": {
     "branches": [
