@@ -2,7 +2,7 @@
   "name": "orbitr-meta",
   "private": true,
   "workspaces": [
-    "packages/orbitr"
+    "packages/*"
   ],
   "scripts": {
     "start": "npm run start --workspace=example",
