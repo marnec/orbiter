@@ -1,17 +1,17 @@
 {
-  "name": "orbiter-meta",
+  "name": "orbitr-meta",
   "private": true,
   "workspaces": [
-    "packages/orbiter"
+    "packages/orbitr"
   ],
   "scripts": {
     "start": "npm run start --workspace=example",
-    "build:lib": "npm run build --workspace=orbiter",
-    "watch:lib": "npm run watch --workspace=orbiter",
+    "build:lib": "npm run build --workspace=orbitr",
+    "watch:lib": "npm run watch --workspace=orbitr",
     "build:example": "npm run build --workspace=example",
     "test": "npm run test --workspaces",
     "lint": "npm run lint --workspaces",
-    "publish:lib": "npm publish --workspace=orbiter"
+    "publish:lib": "npm publish --workspace=orbitr"
   },
   "devDependencies": {
     "typescript": "^4.9.5",

@@ -1,5 +1,5 @@
 {
-  "name": "orbiter",
+  "name": "orbitr",
   "version": "0.0.0-semantically-released",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
